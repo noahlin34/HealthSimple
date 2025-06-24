@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>healthsimple</string>
-          <string>com.noahlin.HealthSimple</string>
+          <string>com.noahlin.healthsimple</string>
         </array>
       </dict>
     </array>

@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
-  View
+  View,
 } from "react-native";
 
 export default function AddAppointment() {
@@ -21,14 +21,18 @@ export default function AddAppointment() {
   const scrollViewRef = useRef<ScrollView | null>(null);
 
   const handleSaveAppointment = async () => {
-
     if (!title || !location || !appointmentType) {
-      Alert.alert("Please add a title and location.")
+      Alert.alert("Please add a title and location.");
       return;
     }
 
-
-    await addAppointment(title, appointmentType, location, notes, date.toISOString());
+    await addAppointment(
+      title,
+      appointmentType,
+      location,
+      notes,
+      date.toISOString(),
+    );
     router.dismissTo({
       pathname: "/(home)/(appointments)",
       params: { refresh: "1" },
@@ -36,30 +40,44 @@ export default function AddAppointment() {
   };
 
   return (
-
-
     <KeyboardAvoidingView behavior="height" keyboardVerticalOffset={100}>
-    <ScrollView ref={scrollViewRef} >
-      <View style={styles.container}>
+      <ScrollView ref={scrollViewRef}>
+        <View style={styles.container}>
+          <InputBox
+            header="What is the title of your appointment?"
+            value={title}
+            setValue={setTitle}
+          />
+          <InputBox
+            header="What is the purpose of your appointment?"
+            value={appointmentType}
+            setValue={setAppointmentType}
+            hintText="e.g. checkup, follow-up, etc."
+          />
+          <AppointmentsDateInput date={date} setDate={setDate} />
+          <InputBox
+            header="Appointment Location:"
+            value={location}
+            setValue={setLocation}
+            hintText="e.g. 2559 Kingston Ave, Remote, etc."
+          />
 
-        <InputBox header="What is the title of your appointment?" value={title} setValue={setTitle}/>
-        <InputBox header="What is the purpose of your appointment?" value={appointmentType} setValue={setAppointmentType} hintText="e.g. checkup, follow-up, etc."/>
-        <AppointmentsDateInput date={date} setDate={setDate} />
-        <InputBox header="Appointment Location:" value={location} setValue={setLocation} hintText="e.g. 2559 Kingston Ave, Remote, etc."/>
+          <NotesInput
+            notes={notes}
+            setNotes={setNotes}
+            header="Any notes to add?"
+            onTouch={() => scrollViewRef.current?.scrollToEnd()}
+          />
 
-            <NotesInput
-              notes={notes}
-              setNotes={setNotes}
-              header="Any notes to add?"
-              onTouch={() => scrollViewRef.current?.scrollToEnd()}/>
-
-           <SaveButton title="Save Appointment" onPress={handleSaveAppointment}/>
-          
-
-      </View>
+          <SaveButton
+            title="Save Appointment"
+            onPress={handleSaveAppointment}
+          />
+        </View>
       </ScrollView>
-      </KeyboardAvoidingView>
-)}
+    </KeyboardAvoidingView>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

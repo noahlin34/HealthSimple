@@ -2,10 +2,9 @@ import InputBox from "@/components/InputBox";
 import DosageSelector from "@/components/MedicationComponents/DosageSelector";
 import FrequencySelector from "@/components/MedicationComponents/FrequencySelector";
 import SaveButton from "@/components/SaveButton";
-import { addMedication } from "@/db/MedicationsProvider";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Alert, KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 
 export default function Index() {
   const [n, setN] = useState("");
@@ -13,27 +12,6 @@ export default function Index() {
   const [medicationName, setMedicationName] = useState("");
   const [medicationFrequency, setMedicationFrequency] = useState("daily");
   const [timesPerDay, setTimesPerDay] = useState("");
-  const [notes, setNotes] = useState("");
-
-  const handleSaveMedication = async (
-    n: number,
-    unit: string,
-    name: string,
-    frequency: string,
-    timesPerDay: number,
-    notes: string,
-  ) => {
-    if (!n || !unit || !name || !frequency || !timesPerDay) {
-      Alert.alert("Please add a name, dosage, and frequency before saving.");
-      return;
-    }
-
-    await addMedication(name, n, unit, frequency, timesPerDay, notes);
-    router.dismissTo({
-      pathname: "/(home)/(medications)",
-      params: { refresh: "1" },
-    });
-  };
 
   return (
     <View style={styles.container}>
@@ -61,9 +39,16 @@ export default function Index() {
         <SaveButton
           title="Next"
           onPress={() =>
-            router.navigate(
-              "/(home)/(medications)/(addMedications)/addMedicationSecond",
-            )
+            router.navigate({
+              pathname: "/addMedicationSecond",
+              params: {
+                n: n,
+                unit: dosageUnit,
+                name: medicationName,
+                frequency: medicationFrequency,
+                timesPerDay: timesPerDay,
+              },
+            })
           }
         />
       </KeyboardAvoidingView>

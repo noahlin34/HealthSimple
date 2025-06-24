@@ -1,22 +1,24 @@
 {
   "expo": {
-    "name": "HealthTest",
-    "slug": "HealthTest",
+    "name": "HealthSimple",
+    "slug": "healthsimple",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "healthtest",
+    "scheme": "healthsimple",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.noahlin.HealthSimple"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.HealthSimple"
     },
     "web": {
       "bundler": "metro",
@@ -33,7 +35,35 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/inter/400Regular/Inter_400Regular.ttf",
+            "node_modules/@expo-google-fonts/inter/700Bold/Inter_700Bold.ttf",
+            "node_modules/@expo-google-fonts/league-spartan/400Regular/LeagueSpartan_400Regular.ttf",
+            "node_modules/@expo-google-fonts/league-spartan/700Bold/LeagueSpartan_700Bold.ttf"
+          ]
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios" : {
+            "deploymentTarget": "18.0"
+          }
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "This app accesses your photos to allow you to select images."
+        }
+      ],
+      "expo-sqlite",
+      "expo-web-browser",
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true

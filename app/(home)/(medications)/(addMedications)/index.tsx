@@ -1,19 +1,13 @@
-import InputBox, { NotesInput } from "@/components/InputBox";
+import InputBox from "@/components/InputBox";
 import DosageSelector from "@/components/MedicationComponents/DosageSelector";
 import FrequencySelector from "@/components/MedicationComponents/FrequencySelector";
 import SaveButton from "@/components/SaveButton";
 import { addMedication } from "@/db/MedicationsProvider";
 import { router } from "expo-router";
 import { useState } from "react";
-import {
-  Alert,
-  KeyboardAvoidingView,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Alert, KeyboardAvoidingView, StyleSheet, View } from "react-native";
 
-export default function AddMedication() {
+export default function Index() {
   const [n, setN] = useState("");
   const [dosageUnit, setDosageUnit] = useState("mg");
   const [medicationName, setMedicationName] = useState("");
@@ -42,59 +36,48 @@ export default function AddMedication() {
   };
 
   return (
-    <KeyboardAvoidingView behavior="height" keyboardVerticalOffset={100}>
-      <ScrollView>
-        <View style={styles.container}>
-          <InputBox
-            value={medicationName}
-            header="What is the name of your medication?"
-            setValue={setMedicationName}
-          />
-          <DosageSelector
-            n={n}
-            setN={setN}
-            unit={dosageUnit}
-            setUnit={setDosageUnit}
-          />
+    <View style={styles.container}>
+      <View>
+        <InputBox
+          value={medicationName}
+          header="What is the name of your medication?"
+          setValue={setMedicationName}
+        />
+        <DosageSelector
+          n={n}
+          setN={setN}
+          unit={dosageUnit}
+          setUnit={setDosageUnit}
+        />
 
-          <FrequencySelector
-            frequency={medicationFrequency}
-            setFrequency={setMedicationFrequency}
-            timesPerDay={timesPerDay}
-            setTimesPerDay={setTimesPerDay}
-          />
-          <NotesInput
-            notes={notes}
-            setNotes={setNotes}
-            header="Any notes to add?"
-          />
-          <SaveButton
-            title="Save Medication"
-            onPress={() =>
-              handleSaveMedication(
-                parseFloat(n),
-                dosageUnit,
-                medicationName,
-                medicationFrequency,
-                parseInt(timesPerDay),
-                notes,
-              )
-            }
-          />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+        <FrequencySelector
+          frequency={medicationFrequency}
+          setFrequency={setMedicationFrequency}
+          timesPerDay={timesPerDay}
+          setTimesPerDay={setTimesPerDay}
+        />
+      </View>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={130}>
+        <SaveButton
+          title="Next"
+          onPress={() =>
+            router.navigate(
+              "/(home)/(medications)/(addMedications)/addMedicationSecond",
+            )
+          }
+        />
+      </KeyboardAvoidingView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "column",
+    flex: 1,
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     padding: 25,
-    gap: 20,
   },
 
   saveButton: {

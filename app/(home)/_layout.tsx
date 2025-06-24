@@ -42,22 +42,8 @@ export default function Layout() {
         options={{ title: "Medication" }}
       />
       <Stack.Screen
-        name="(medications)/addMedication"
-        options={{
-          title: "New Medication",
-          presentation: "modal",
-          headerBackButtonDisplayMode: "minimal",
-          headerLeft: () => (
-            <Pressable
-              onPress={() => router.back()}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome name="close" size={20} color="black" />
-            </Pressable>
-          ),
-        }}
+        name="(medications)/(addMedications)"
+        options={{ title: "Add Medication", presentation: "modal" }}
       />
 
       <Stack.Screen

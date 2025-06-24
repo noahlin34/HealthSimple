@@ -40,7 +40,7 @@ export default function FrequencySelector({
   return (
     <View style={styles.verticalFlexBox}>
       <Text style={Styles.label}>How often do you take this medication?</Text>
-      <Animated.View style={styles.horizontalFlexBox}>
+      <View style={styles.horizontalFlexBox}>
         <Animated.View style={[styles.pill, animatedStyle]} />
         <Pressable
           style={styles.freqButton}
@@ -72,7 +72,7 @@ export default function FrequencySelector({
         >
           <Text style={styles.dosageButtonText}>Monthly</Text>
         </Pressable>
-      </Animated.View>
+      </View>
       <View style={styles.horizontalFlexBoxx}>
         <Text style={Styles.label}>
           {" "}
@@ -105,26 +105,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     width: "100%",
-    height: "100%",
     backgroundColor: "#E5E5EA",
     borderRadius: 15,
-    flex: 1,
   },
   horizontalFlexBoxx: {
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
     width: "100%",
-    height: "100%",
     borderRadius: 15,
-    flex: 1,
   },
   verticalFlexBox: {
     flexDirection: "column",
-    flex: 0.5,
+    flex: 0.25,
     alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
     gap: 15,
   },
 

@@ -1,16 +1,16 @@
 {
   "expo": {
     "name": "HealthSimple",
-    "slug": "healthsimple",
+    "slug": "HealthTest",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "healthsimple",
+    "scheme": "healthtest",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.noahlin.healthsimple"
+      "bundleIdentifier": "com.noahlin.HealthSimple"
     },
     "android": {
       "adaptiveIcon": {

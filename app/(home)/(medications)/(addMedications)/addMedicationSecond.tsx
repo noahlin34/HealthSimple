@@ -32,7 +32,7 @@ export default function AddMedicationSecond() {
   };
 
   return (
-    <View style={{ padding: 20 }}>
+    <View style={{ padding: 20, justifyContent: "space-between" }}>
       <NotesInput
         header="Any notes to add?"
         notes={notes}

@@ -39,7 +39,18 @@ export default function Layout() {
       />
       <Stack.Screen
         name="(medications)/medicationDetailView"
-        options={{ title: "Medication" }}
+        options={{
+          title: "Medication",
+          headerRight: () => (
+            <Pressable
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}
+            >
+              <FontAwesome name="pencil" size={20} color="dark-gray" />
+            </Pressable>
+          ),
+        }}
       />
       <Stack.Screen
         name="(medications)/(addMedications)"
@@ -47,7 +58,7 @@ export default function Layout() {
       />
 
       <Stack.Screen
-        name="(appointments)/addAppointment"
+        name="(appointments)/(addAppointments)"
         options={{
           headerLeft: () => (
             <Pressable
@@ -62,6 +73,21 @@ export default function Layout() {
 
           title: "Add Appointment",
           presentation: "modal",
+        }}
+      />
+      <Stack.Screen
+        name="(appointments)/(addAppointment)/addAppointmentSecond"
+        options={{
+          headerLeft: () => (
+            <Pressable
+              onPress={() => router.back()}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}
+            >
+              <FontAwesome5 name="arrow-left" size={20} color="black" />
+            </Pressable>
+          ),
         }}
       />
 

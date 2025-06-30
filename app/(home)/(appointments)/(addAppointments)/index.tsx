@@ -1,43 +1,22 @@
 import AppointmentsDateInput from "@/components/AppointmentsDateInput";
 import InputBox, { NotesInput } from "@/components/InputBox";
 import SaveButton from "@/components/SaveButton";
-import { addAppointment } from "@/db/AppointmentsProvider";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
 import {
-  Alert,
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
   View,
 } from "react-native";
 
-export default function AddAppointment() {
+export default function Index() {
   const [title, setTitle] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState(new Date(Date.now()));
   const [notes, setNotes] = useState("");
   const scrollViewRef = useRef<ScrollView | null>(null);
-
-  const handleSaveAppointment = async () => {
-    if (!title || !location || !appointmentType) {
-      Alert.alert("Please add a title and location.");
-      return;
-    }
-
-    await addAppointment(
-      title,
-      appointmentType,
-      location,
-      notes,
-      date.toISOString(),
-    );
-    router.dismissTo({
-      pathname: "/(home)/(appointments)",
-      params: { refresh: "1" },
-    });
-  };
 
   return (
     <KeyboardAvoidingView behavior="height" keyboardVerticalOffset={100}>
@@ -70,8 +49,17 @@ export default function AddAppointment() {
           />
 
           <SaveButton
-            title="Save Appointment"
-            onPress={handleSaveAppointment}
+            title="Next"
+            onPress={() =>
+              router.push({
+                pathname: "/addAppointmentsSecond",
+                params: {
+                  title: title,
+                  type: appointmentType,
+                  date: date.toISOString(),
+                },
+              })
+            }
           />
         </View>
       </ScrollView>

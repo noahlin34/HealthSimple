@@ -32,13 +32,20 @@ export default function AddMedicationSecond() {
   };
 
   return (
-    <View style={{ padding: 20, justifyContent: "space-between" }}>
+    <View
+      style={{
+        padding: 20,
+        flex: 1,
+        justifyContent: "space-between",
+        flexDirection: "column",
+      }}
+    >
       <NotesInput
         header="Any notes to add?"
         notes={notes}
         setNotes={setNotes}
       />
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView keyboardVerticalOffset={130} behavior="position">
         <SaveButton
           title="Add Medication"
           onPress={() =>

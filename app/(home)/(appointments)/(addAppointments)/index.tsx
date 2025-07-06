@@ -1,5 +1,5 @@
 import AppointmentsDateInput from "@/components/AppointmentsDateInput";
-import InputBox, { NotesInput } from "@/components/InputBox";
+import InputBox from "@/components/InputBox";
 import SaveButton from "@/components/SaveButton";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
@@ -19,58 +19,45 @@ export default function Index() {
   const scrollViewRef = useRef<ScrollView | null>(null);
 
   return (
-    <KeyboardAvoidingView behavior="height" keyboardVerticalOffset={100}>
-      <ScrollView ref={scrollViewRef}>
-        <View style={styles.container}>
-          <InputBox
-            header="What is the title of your appointment?"
-            value={title}
-            setValue={setTitle}
-          />
-          <InputBox
-            header="What is the purpose of your appointment?"
-            value={appointmentType}
-            setValue={setAppointmentType}
-            hintText="e.g. checkup, follow-up, etc."
-          />
-          <AppointmentsDateInput date={date} setDate={setDate} />
-          <InputBox
-            header="Appointment Location:"
-            value={location}
-            setValue={setLocation}
-            hintText="e.g. 2559 Kingston Ave, Remote, etc."
-          />
+    <View style={styles.container}>
+      <View style={{ flex: 1 }}>
+        <InputBox
+          header="What is the title of your appointment?"
+          value={title}
+          setValue={setTitle}
+        />
+        <InputBox
+          header="What is the purpose of your appointment?"
+          value={appointmentType}
+          setValue={setAppointmentType}
+          hintText="e.g. checkup, follow-up, etc."
+        />
+        <AppointmentsDateInput date={date} setDate={setDate} />
+      </View>
 
-          <NotesInput
-            notes={notes}
-            setNotes={setNotes}
-            header="Any notes to add?"
-            onTouch={() => scrollViewRef.current?.scrollToEnd()}
-          />
-
-          <SaveButton
-            title="Next"
-            onPress={() =>
-              router.push({
-                pathname: "/addAppointmentsSecond",
-                params: {
-                  title: title,
-                  type: appointmentType,
-                  date: date.toISOString(),
-                },
-              })
-            }
-          />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={130}>
+        <SaveButton
+          title="Next"
+          onPress={() =>
+            router.push({
+              pathname: "/addAppointmentsSecond",
+              params: {
+                title: title,
+                type: appointmentType,
+                date: date.toISOString(),
+              },
+            })
+          }
+        />
+      </KeyboardAvoidingView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     padding: 20,
     backgroundColor: "#f0f0f0",

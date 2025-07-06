@@ -6,7 +6,13 @@ import { useState } from "react";
 import { Alert, KeyboardAvoidingView, View } from "react-native";
 
 export default function AddMedicationSecond() {
-  const { n, unit, name, frequency, timesPerDay } = useLocalSearchParams();
+  const { n, unit, name, frequency, timesPerDay } = useLocalSearchParams() as {
+    n: string;
+    unit: string;
+    name: string;
+    frequency: string;
+    timesPerDay: string;
+  };
   const [notes, setNotes] = useState("");
 
   const handleSaveMedication = async (
@@ -54,7 +60,7 @@ export default function AddMedicationSecond() {
               unit,
               name,
               frequency,
-              timesPerDay,
+              parseInt(timesPerDay),
               notes,
             )
           }

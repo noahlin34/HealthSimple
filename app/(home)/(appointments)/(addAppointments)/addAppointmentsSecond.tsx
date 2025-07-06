@@ -5,7 +5,11 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { Alert, KeyboardAvoidingView, View } from "react-native";
 export default function AddAppointmentsSecond() {
-  const { title, type, date } = useLocalSearchParams();
+  const { title, type, date } = useLocalSearchParams() as {
+    title: string;
+    type: string;
+    date: string;
+  };
   const [notes, setNotes] = useState("");
   const [location, setLocation] = useState("");
 
@@ -16,10 +20,8 @@ export default function AddAppointmentsSecond() {
     }
 
     await addAppointment(title, type, location, notes, date);
-    router.dismissTo({
-      pathname: "/(home)/(appointments)",
-      params: { refresh: "1" },
-    });
+    router.dismiss();
+    router.dismiss();
   };
   return (
     <View

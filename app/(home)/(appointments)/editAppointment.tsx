@@ -1,7 +1,11 @@
 import AppointmentsDateInput from "@/components/AppointmentsDateInput";
 import InputBox, { NotesInput } from "@/components/InputBox";
 import SaveButton from "@/components/SaveButton";
-import { Appointment, getAppointmentById, updateAppointment } from "@/db/AppointmentsProvider";
+import {
+  Appointment,
+  getAppointmentById,
+  updateAppointment,
+} from "@/db/AppointmentsProvider";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import {
@@ -9,7 +13,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
-  View
+  View,
 } from "react-native";
 
 export default function AddAppointment() {
@@ -19,28 +23,25 @@ export default function AddAppointment() {
   const [date, setDate] = useState(new Date(Date.now()));
   const [notes, setNotes] = useState("");
   let appt: Appointment | null;
-  const {id} = useLocalSearchParams<{id: string}>();
-
+  const { id } = useLocalSearchParams<{ id: string }>();
 
   const fetchAppointment = async () => {
     try {
-        appt = await getAppointmentById(parseInt(id));
-        if (!appt) {
-            console.error("Appointment not found");
-            return;
-        }
+      appt = await getAppointmentById(parseInt(id));
+      if (!appt) {
+        console.error("Appointment not found");
+        return;
+      }
 
-        setTitle(appt.title);
-        setAppointmentType(appt.type);
-        setLocation(appt.location);
-        setDate(new Date(appt.date));
-        setNotes(appt.notes);
+      setTitle(appt.title);
+      setAppointmentType(appt.type);
+      setLocation(appt.location);
+      setDate(new Date(appt.date));
+      setNotes(appt.notes);
+    } catch (error) {
+      console.error("Error fetching appointment:", error);
     }
-    catch (error) {
-        console.error("Error fetching appointment:", error);
-    }
-  }
-
+  };
 
   const handleSaveAppointment = async () => {
     if (!title || !location || !appointmentType) {
@@ -48,38 +49,62 @@ export default function AddAppointment() {
       return;
     }
 
-
-    await updateAppointment(parseInt(id), title, appointmentType, location, notes, date.toISOString());
-    router.dismissTo({pathname: '/(home)/(appointments)/appointmentDetailView', params: {id: id, refresh: 1}});
+    await updateAppointment(
+      parseInt(id),
+      title,
+      appointmentType,
+      location,
+      notes,
+      date.toISOString(),
+    );
+    router.dismissTo({
+      pathname: "/(home)/(appointments)/appointmentDetailView",
+      params: { id: id, refresh: 1 },
+    });
   };
 
-  useEffect(() => {fetchAppointment()}, []);
+  useEffect(() => {
+    fetchAppointment();
+  }, []);
 
   return (
+    <KeyboardAvoidingView behavior="height" keyboardVerticalOffset={100}>
+      <ScrollView>
+        <View style={styles.container}>
+          <InputBox
+            header="What is the title of your appointment?"
+            value={title}
+            setValue={setTitle}
+          />
+          <InputBox
+            header="What is the purpose of your appointment?"
+            value={appointmentType}
+            setValue={setAppointmentType}
+            hintText="e.g. checkup, follow-up, etc."
+          />
+          <AppointmentsDateInput date={date} setDate={setDate} />
+          <InputBox
+            header="Appointment Location:"
+            value={location}
+            setValue={setLocation}
+            hintText="e.g. 2559 Kingston Ave, Remote, etc."
+          />
 
+          <NotesInput
+            notes={notes}
+            setNotes={setNotes}
+            header="Any notes to add?"
+          />
 
-   <KeyboardAvoidingView behavior="height" keyboardVerticalOffset={100}>
-       <ScrollView  >
-         <View style={styles.container}>
-   
-           <InputBox header="What is the title of your appointment?" value={title} setValue={setTitle}/>
-           <InputBox header="What is the purpose of your appointment?" value={appointmentType} setValue={setAppointmentType} hintText="e.g. checkup, follow-up, etc."/>
-           <AppointmentsDateInput date={date} setDate={setDate} />
-           <InputBox header="Appointment Location:" value={location} setValue={setLocation} hintText="e.g. 2559 Kingston Ave, Remote, etc."/>
-   
-               <NotesInput
-                 notes={notes}
-                 setNotes={setNotes}
-                 header="Any notes to add?"
-                 />
-   
-              <SaveButton title="Save Appointment" onPress={handleSaveAppointment}/>
-             
-   
-         </View>
-         </ScrollView>
-         </KeyboardAvoidingView>
-)}
+          <SaveButton
+            title="Save Appointment"
+            onPress={handleSaveAppointment}
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

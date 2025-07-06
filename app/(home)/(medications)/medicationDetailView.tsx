@@ -4,9 +4,9 @@ import DetailTitle from "@/components/DetailTitle";
 import NotesCard from "@/components/NotesCard";
 import Styles from "@/components/Styles";
 import {
-    Medication,
-    deleteMedicationById,
-    getMedicationById,
+  Medication,
+  deleteMedicationById,
+  getMedicationById,
 } from "@/db/MedicationsProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { router, useLocalSearchParams, useNavigation } from "expo-router";
@@ -99,7 +99,7 @@ export default function MedicationDetailView() {
 
       <DeleteButton
         title="Delete Medication"
-        onPress={handleDeleteMedication}
+        onDelete={handleDeleteMedication}
         deleteMessage="Are you sure you want to delete this medication? This action cannot be undone."
         deleteTitle="Delete Medication"
       />

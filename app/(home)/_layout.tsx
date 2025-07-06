@@ -39,29 +39,26 @@ export default function Layout() {
       />
       <Stack.Screen
         name="(medications)/medicationDetailView"
-        options={{ title: "Medication" }}
-      />
-      <Stack.Screen
-        name="(medications)/addMedication"
         options={{
-          title: "New Medication",
-          presentation: "modal",
-          headerBackButtonDisplayMode: "minimal",
-          headerLeft: () => (
+          title: "Medication",
+          headerRight: () => (
             <Pressable
-              onPress={() => router.back()}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <FontAwesome name="close" size={20} color="black" />
+              <FontAwesome name="pencil" size={20} color="dark-gray" />
             </Pressable>
           ),
         }}
       />
+      <Stack.Screen
+        name="(medications)/(addMedications)"
+        options={{ title: "Add Medication", presentation: "modal" }}
+      />
 
       <Stack.Screen
-        name="(appointments)/addAppointment"
+        name="(appointments)/(addAppointments)"
         options={{
           headerLeft: () => (
             <Pressable
@@ -70,12 +67,27 @@ export default function Layout() {
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <FontAwesome name="close" size={20} color="black" />
+              <FontAwesome5 name="arrow-left" size={20} color="black" />
             </Pressable>
           ),
 
           title: "Add Appointment",
           presentation: "modal",
+        }}
+      />
+      <Stack.Screen
+        name="(appointments)/(addAppointment)/addAppointmentSecond"
+        options={{
+          headerLeft: () => (
+            <Pressable
+              onPress={() => router.back()}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}
+            >
+              <FontAwesome5 name="arrow-left" size={20} color="black" />
+            </Pressable>
+          ),
         }}
       />
 
@@ -127,7 +139,7 @@ export default function Layout() {
         options={{ title: "Team Member Details" }}
       />
       <Stack.Screen
-        name="(teamMembers)/addTeamMember"
+        name="(teamMembers)/(addTeamMembers)"
         options={{
           title: "Add Team Member",
           presentation: "modal",
@@ -138,10 +150,14 @@ export default function Layout() {
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <FontAwesome name="close" size={20} color="black" />
+              <FontAwesome5 name="arrow-left" size={20} color="black" />
             </Pressable>
           ),
         }}
+      />
+      <Stack.Screen
+        name="(teamMembers)/(addTeamMembers)/addTeamMembersSecond"
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="(teamMembers)/editTeamMember"
@@ -167,13 +183,16 @@ export default function Layout() {
       />
       <Stack.Screen
         name="(medicalHistory)/historyDetail"
-        options={{ title: "Medical History Detail" }}
+        options={{
+          title: "Medical History Item",
+        }}
       />
       <Stack.Screen
-        name="(medicalHistory)/addHistory"
+        name="(medicalHistory)/(addHistory)"
         options={{
           presentation: "modal",
           title: "Add History Item",
+
           headerLeft: () => (
             <Pressable
               onPress={() => router.back()}

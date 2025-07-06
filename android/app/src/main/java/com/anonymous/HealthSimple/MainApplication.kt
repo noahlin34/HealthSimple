@@ -1,4 +1,4 @@
-package com.anonymous.HealthSimple
+package com.anonymous.healthsimple
 import com.facebook.react.common.assets.ReactFontManager
 
 import android.app.Application

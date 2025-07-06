@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import DetailButtons from "@/components/DetailButtons";
+import { DeleteButton } from "@/components/DetailButtons";
 import LargeNotesCard from "@/components/MyNotes/LargeNotesCard";
 import NotesTitle from "@/components/MyNotes/NotesTitle";
 import { deleteNoteById, getNoteById, Note } from "@/db/NotesProvider";
-import { router, useLocalSearchParams } from "expo-router";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
 
 export default function NotesDetail() {
@@ -50,6 +51,24 @@ export default function NotesDetail() {
     setLoading(false);
   }, [id, refresh]);
 
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Pressable
+          onPress={() =>
+            router.push({ pathname: "/editNote", params: { id: id } })
+          }
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.5 : 1,
+          })}
+        >
+          <FontAwesome5 name="pencil-alt" size={20} color="dark-gray" />
+        </Pressable>
+      ),
+    });
+  });
+
   if (loading || !note) {
     return (
       <View>
@@ -62,18 +81,11 @@ export default function NotesDetail() {
     <View style={styles.container}>
       <NotesTitle date={note.editDate} />
       <LargeNotesCard notes={note.content} title={"_blank"} />
-      <DetailButtons
+      <DeleteButton
+        title="Delete Note"
         deleteTitle="Delete Note"
-        onDelete={handleDelete}
-        onEdit={() =>
-          router.navigate({
-            pathname: "/(home)/(notes)/editNote",
-            params: { id: id.toString() },
-          })
-        }
-        editButtonTitle="Edit Note"
-        deleteButtonTitle="Delete Note"
         deleteMessage="Are you sure you want to delete this note? This action cannot be undone."
+        onDelete={handleDelete}
       />
     </View>
   );

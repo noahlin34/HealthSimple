@@ -1,4 +1,4 @@
-package com.anonymous.HealthSimple
+package com.anonymous.healthsimple
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

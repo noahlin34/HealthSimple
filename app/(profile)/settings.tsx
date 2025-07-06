@@ -21,6 +21,10 @@ export default function Settings() {
             label: "Edit medical history",
             path: "/(profile)/editMedicalHistory",
           },
+          {
+            label: "Export health data",
+            path: "",
+          },
         ]}
         renderItem={({ item }) => (
           <SettingsButton

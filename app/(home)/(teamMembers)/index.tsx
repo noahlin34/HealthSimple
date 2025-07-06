@@ -65,7 +65,7 @@ export default function Index() {
             label="Add Team Member"
             onPress={() =>
               router.navigate({
-                pathname: "/(home)/(teamMembers)/addTeamMember",
+                pathname: "/(addTeamMembers)",
               })
             }
           />

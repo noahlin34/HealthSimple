@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.HealthSimple'
+    namespace 'com.anonymous.healthsimple'
     defaultConfig {
-        applicationId 'com.anonymous.HealthSimple'
+        applicationId 'com.anonymous.healthsimple'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

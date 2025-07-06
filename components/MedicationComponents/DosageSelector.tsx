@@ -34,7 +34,7 @@ export default function DosageSelector({
   return (
     <View style={styles.verticalFlexBox}>
       <Text style={Styles.label}>What is the dosage of your medication?</Text>
-      <View style={[styles.horizontalFlexBox, animatedStyle]}>
+      <View style={styles.horizontalFlexBox}>
         <TextInput
           placeholder="Dosage"
           maxLength={10}
@@ -49,7 +49,7 @@ export default function DosageSelector({
             flexDirection: "row",
             padding: 5,
             borderRadius: 15,
-            height: "70%",
+            height: "100%",
             alignContent: "center",
             justifyContent: "center",
             alignItems: "center",
@@ -111,18 +111,16 @@ const styles = StyleSheet.create({
 
   horizontalFlexBox: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
-    paddingVertical: 10,
+    justifyContent: "center",
+    alignItems: "flex-start",
+    paddingTop: 10,
+    gap: 5,
   },
   verticalFlexBox: {
     flexDirection: "column",
-    flex: 0.25,
+    flex: 0.2,
     alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
+    alignContent: "center",
   },
 
   inputBox: {

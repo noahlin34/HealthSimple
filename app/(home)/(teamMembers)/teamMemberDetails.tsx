@@ -1,4 +1,4 @@
-import DetailButtons from "@/components/DetailButtons";
+import { DeleteButton } from "@/components/DetailButtons";
 import NotesCard from "@/components/NotesCard";
 import MemberDetailsCard from "@/components/TeamComponents/MemberDetailsCard";
 import MemberTitle from "@/components/TeamComponents/MemberTitle";
@@ -7,9 +7,10 @@ import {
   getTeamMemberById,
   TeamMember,
 } from "@/db/TeamProvider";
-import { router, useLocalSearchParams } from "expo-router";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function TeamMemberDetails() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -36,6 +37,24 @@ export default function TeamMemberDetails() {
       router.setParams({ refresh: undefined });
     }
   }, [refresh]);
+
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Pressable
+          onPress={() =>
+            router.push({ pathname: "/editTeamMember", params: { id: id } })
+          }
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.5 : 1,
+          })}
+        >
+          <FontAwesome5 name="pencil-alt" size={20} color="dark-gray" />
+        </Pressable>
+      ),
+    });
+  });
 
   if (loading || !teamMember) {
     return (
@@ -67,16 +86,9 @@ export default function TeamMemberDetails() {
         phone={teamMember.phone}
       />
       <NotesCard notes={teamMember.notes} />
-      <DetailButtons
-        editButtonTitle="Edit Team Member"
-        onEdit={() =>
-          router.navigate({
-            pathname: "/(home)/(teamMembers)/editTeamMember",
-            params: { id: id },
-          })
-        }
+      <DeleteButton
         onDelete={handleDeleteMember}
-        deleteButtonTitle="Delete Team Member"
+        title="Delete Team Member"
         deleteMessage="Are you sure you want to delete this team member record? This action cannot be undone."
         deleteTitle="Delete Team Member"
       />

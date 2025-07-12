@@ -1,14 +1,14 @@
 import { DeleteButton } from "@/components/DetailButtons";
+import DetailCard from "@/components/DetailCard";
 import NotesCard from "@/components/NotesCard";
-import MemberDetailsCard from "@/components/TeamComponents/MemberDetailsCard";
-import MemberTitle from "@/components/TeamComponents/MemberTitle";
+import Styles from "@/components/Styles";
 import {
   deleteTeamMemberById,
   getTeamMemberById,
   TeamMember,
 } from "@/db/TeamProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { Link, router, useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -79,11 +79,18 @@ export default function TeamMemberDetails() {
 
   return (
     <View style={styles.container}>
-      <MemberTitle name={teamMember.name} />
-      <MemberDetailsCard
-        role={teamMember.role}
-        email={teamMember.email}
-        phone={teamMember.phone}
+      <DetailCard
+        objects={
+          <>
+            <Text style={Styles.label}>{teamMember.role}</Text>
+            <Link href={("mailto:" + teamMember.email) as `mailto:${string}`}>
+              <Text style={Styles.labelBold}>{teamMember.phone}</Text>
+            </Link>
+            <Link href={("tel:" + teamMember.phone) as `tel:${string}`}>
+              <Text style={Styles.labelBold}>{teamMember.email}</Text>
+            </Link>
+          </>
+        }
       />
       <NotesCard notes={teamMember.notes} />
       <DeleteButton

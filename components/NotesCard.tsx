@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginVertical: 5,
     flex: 2,
+    gap: 5,
   },
   horizontalLine: {
     width: "95%",

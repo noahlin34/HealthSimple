@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingVertical: 10,
     marginVertical: 5,
+    gap: 5,
     flex: 2,
   },
   horizontalLine: {

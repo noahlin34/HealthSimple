@@ -25,7 +25,7 @@ export default function MenuItem({
   const [isPressed, setIsPressed] = useState(false);
   const scale = useSharedValue(1);
   const config = {
-    duration: 500,
+    duration: 100,
     easing: Easing.bezier(0.4, 0, 0.2, 1),
   };
 

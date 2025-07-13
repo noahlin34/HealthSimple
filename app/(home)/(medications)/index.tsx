@@ -1,5 +1,5 @@
 import AddButton from "@/components/AddButton";
-import MedicationsItem from "@/components/MedicationsItem";
+import ListItem from "@/components/ListItem";
 import {
   getAllMedications,
   initMedicationsDB,
@@ -52,16 +52,15 @@ export default function Index() {
         contentContainerStyle={{ gap: 10 }}
         data={medications}
         renderItem={({ item }: { item: Medication }) => (
-          <MedicationsItem
+          <ListItem
             onPress={() =>
               router.navigate({
                 pathname: "/(home)/(medications)/medicationDetailView",
                 params: { id: item.id },
               })
             }
-            label={item.label}
-            value={item.value}
-            unit={item.unit}
+            labelLeft={item.label}
+            labelRight={item.value + " " + item.unit}
           />
         )}
         keyExtractor={(item: Medication) => item.id.toString()}

@@ -80,6 +80,7 @@ export default function TeamMemberDetails() {
   return (
     <View style={styles.container}>
       <DetailCard
+        title="Details"
         objects={
           <>
             <Text style={Styles.label}>{teamMember.role}</Text>

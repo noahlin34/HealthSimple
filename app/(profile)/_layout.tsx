@@ -57,6 +57,7 @@ export default function Layout() {
           },
         }}
       />
+      <Stack.Screen name="export" options={{ title: "Export Health Data" }} />
     </Stack>
   );
 }

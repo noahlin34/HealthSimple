@@ -12,7 +12,7 @@ const db = SQLite.openDatabaseSync("history.db");
 
 export async function initHistoryDB() {
   await db.execAsync(
-    "CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, date TEXT NOT NULL, details TEXT NOT NULL, notes TEXT)"
+    "CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, date TEXT NOT NULL, details TEXT NOT NULL, notes TEXT)",
   );
 }
 
@@ -25,20 +25,20 @@ export async function addHistoryItem(
   title: string,
   date: string,
   details: string,
-  notes: string
+  notes: string,
 ) {
   await db.runAsync(
     "INSERT INTO history (title, date, details, notes) VALUES (?, ?, ?, ?)",
-    [title, date, details, notes]
+    [title, date, details, notes],
   );
 }
 
 export async function getHistoryItemById(
-  id: number
+  id: number,
 ): Promise<HistoryItem | null> {
   const result = await db.getFirstAsync<HistoryItem>(
     "SELECT * FROM history WHERE id = ?",
-    id
+    id,
   );
   if (!result) {
     console.log(`No history item found with id: ${id}`);
@@ -54,11 +54,11 @@ export async function updateHistoryItem(
   title: string,
   date: string,
   details: string,
-  notes: string
+  notes: string,
 ): Promise<void> {
   await db.runAsync(
     "UPDATE history SET title = ?, date = ?, details = ?, notes = ? WHERE id = ?",
-    [title, date, details, notes, id]
+    [title, date, details, notes, id],
   );
   console.log(`Updated history item with id: ${id}`);
 }

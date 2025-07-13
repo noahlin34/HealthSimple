@@ -23,7 +23,7 @@ export default function Settings() {
           },
           {
             label: "Export health data",
-            path: "",
+            path: "/(profile)/export",
           },
         ]}
         renderItem={({ item }) => (

@@ -91,8 +91,9 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
+    gap: 20,
     flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
 });

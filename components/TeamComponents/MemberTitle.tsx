@@ -13,7 +13,7 @@ export default function MemberTitle({ name }: { name: string }) {
 const styles = StyleSheet.create({
   horizontalContainer: {
     flexDirection: "row",
-    flex: 0.75,
+    flex: 0.5,
   },
   titleText: {
     fontSize: 30,

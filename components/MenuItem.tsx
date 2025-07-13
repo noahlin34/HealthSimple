@@ -2,6 +2,12 @@ import Styles from "@/components/Styles";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 type Props = {
   label: string;
@@ -17,24 +23,43 @@ export default function MenuItem({
   onPress,
 }: Props) {
   const [isPressed, setIsPressed] = useState(false);
+  const scale = useSharedValue(1);
+  const config = {
+    duration: 500,
+    easing: Easing.bezier(0.4, 0, 0.2, 1),
+  };
+
+  const style = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: withTiming(scale.value, config) }],
+    };
+  });
 
   return (
-    <Pressable
-      onPress={onPress}
-      onPressIn={() => setIsPressed(true)}
-      onPressOut={() => setIsPressed(false)}
-      style={isPressed ? styles.buttonPressed : styles.button}
-    >
-      <View style={styles.container}>
-        <FontAwesome5
-          name={symbolName}
-          size={30}
-          color={symbolColor || "black"}
-          style={{ marginHorizontal: 20 }}
-        />
-        <Text style={Styles.labelLarge}>{label}</Text>
-      </View>
-    </Pressable>
+    <Animated.View style={[styles.container, style]}>
+      <Pressable
+        onPress={() => {
+          onPress?.();
+        }}
+        onPressIn={() => {
+          scale.value = 0.9;
+        }}
+        onPressOut={() => {
+          scale.value = 1;
+        }}
+        style={isPressed ? styles.buttonPressed : styles.button}
+      >
+        <View style={styles.container}>
+          <FontAwesome5
+            name={symbolName}
+            size={30}
+            color={symbolColor || "black"}
+            style={{ marginHorizontal: 20 }}
+          />
+          <Text style={Styles.labelLarge}>{label}</Text>
+        </View>
+      </Pressable>
+    </Animated.View>
   );
 }
 
@@ -47,7 +72,7 @@ const styles = StyleSheet.create({
   button: {
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
     backgroundColor: "white",
-    borderRadius: 15,
+    borderRadius: 30,
     width: 339,
     height: 61,
     paddingLeft: 15,
@@ -57,7 +82,7 @@ const styles = StyleSheet.create({
   buttonPressed: {
     backgroundColor: "#f0f0f0",
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
-    borderRadius: 15,
+    borderRadius: 30,
     width: 339,
     height: 61,
     justifyContent: "center",

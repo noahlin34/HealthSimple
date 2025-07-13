@@ -12,7 +12,7 @@ export default function DetailCard({
   return (
     <View style={styles.container}>
       {title !== "_blank" && (
-        <Text style={Styles.labelBoldLarge}>{title ? title : "Notes"}</Text>
+        <Text style={Styles.labelBoldGray}>{title ? title : "Notes"}</Text>
       )}
       <View style={styles.cardContainer}>{objects}</View>
     </View>
@@ -25,8 +25,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "100%",
     paddingVertical: 10,
+    justifyContent: "space-between",
     marginVertical: 5,
-    gap: 5,
+    gap: 10,
     flex: 2,
   },
   horizontalLine: {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: 339,
     height: "100%",
-    borderRadius: 15,
+    borderRadius: 30,
     backgroundColor: "white",
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
     justifyContent: "space-evenly",

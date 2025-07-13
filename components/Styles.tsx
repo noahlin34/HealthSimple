@@ -2,7 +2,7 @@ import { Platform, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   Title: {
-    fontSize: 30,
+    fontSize: 40,
     fontFamily:
       Platform.OS === "ios" ? "LeagueSpartan-Bold" : "LeagueSpartan_700Bold",
   },
@@ -36,6 +36,11 @@ export default StyleSheet.create({
     color: "black", // Default link color
   },
   labelBold: {
+    fontSize: 20,
+    fontFamily:
+      Platform.OS === "ios" ? "LeagueSpartan-Bold" : "LeagueSpartan_700Bold",
+  },
+  labelBoldGray: {
     fontSize: 20,
     fontFamily:
       Platform.OS === "ios" ? "LeagueSpartan-Bold" : "LeagueSpartan_700Bold",

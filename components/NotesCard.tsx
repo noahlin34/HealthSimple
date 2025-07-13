@@ -24,11 +24,12 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "flex-start",
     flexDirection: "column",
+    justifyContent: "space-between",
     width: "100%",
     paddingVertical: 10,
     marginVertical: 5,
     flex: 2,
-    gap: 5,
+    gap: 10,
   },
   horizontalLine: {
     width: "95%",
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: 339,
     height: "100%",
-    borderRadius: 15,
+    borderRadius: 30,
     backgroundColor: "white",
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
     justifyContent: "space-between",

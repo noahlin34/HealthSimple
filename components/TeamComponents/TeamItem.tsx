@@ -32,16 +32,15 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   button: {
-    borderRadius: 15,
+    borderRadius: 30,
     backgroundColor: "white",
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
     width: 339,
   },
   buttonPressed: {
-    borderRadius: 15,
+    borderRadius: 30,
     backgroundColor: "#f0f0f0",
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
-    height: 84,
     width: 339,
   },
   container: {

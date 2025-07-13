@@ -63,7 +63,7 @@ export function DeleteButton({
   const [deleteIsPressed, setDeleteIsPressed] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.deleteContainer}>
       <Pressable
         style={deleteIsPressed ? styles.buttonPressed : styles.button}
         onPress={() => {
@@ -84,7 +84,7 @@ export function DeleteButton({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "white",
-    borderRadius: 15,
+    borderRadius: 30,
     alignSelf: "center",
     width: 339,
     height: "100%",
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     backgroundColor: "#f0f0f0",
-    borderRadius: 15,
+    borderRadius: 30,
     alignSelf: "center",
     width: 339,
     height: "100%",
@@ -121,5 +121,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "SpaceMono_400Regular",
     color: "#007AFF", // Default link color for actions
+  },
+  deleteContainer: {
+    flex: 0.5,
+    justifyContent: "space-between",
+    flexDirection: "column",
+    paddingTop: 15,
+    alignContent: "center",
   },
 });

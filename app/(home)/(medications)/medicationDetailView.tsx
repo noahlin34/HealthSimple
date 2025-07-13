@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     justifyContent: "flex-start",
-    gap: 5,
+    gap: 20,
   },
 });

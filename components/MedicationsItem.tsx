@@ -17,12 +17,15 @@ export default function MedicationsItem({
   value,
   onPress,
 }: Props) {
-    const [isPressed, setIsPressed] = useState(false);
-
-
+  const [isPressed, setIsPressed] = useState(false);
 
   return (
-    <Pressable onPress={onPress} style={isPressed ? styles.buttonPressed : styles.button} onPressIn={() => setIsPressed(true)} onPressOut={() => setIsPressed(false)} >
+    <Pressable
+      onPress={onPress}
+      style={isPressed ? styles.buttonPressed : styles.button}
+      onPressIn={() => setIsPressed(true)}
+      onPressOut={() => setIsPressed(false)}
+    >
       <View style={styles.container}>
         <Text style={Styles.label}>{label}</Text>
         <Text style={Styles.label}>
@@ -37,7 +40,7 @@ export function AddMedicationButton() {
   return (
     <Link href="./addMedication" asChild>
       <Pressable style={styles.container}>
-      <Text style={styles.labelClickable}>Add Medication</Text>
+        <Text style={styles.labelClickable}>Add Medication</Text>
         <FontAwesome5 name="plus-circle" size={15} color="#007AFF" />
       </Pressable>
     </Link>
@@ -45,24 +48,24 @@ export function AddMedicationButton() {
 }
 
 const styles = StyleSheet.create({
-    button: {
-        backgroundColor: "white",
-        boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
-        borderRadius: 15,
-        width: 339,
-        height: 50,
-        justifyContent: "center",
-        paddingHorizontal: 15,
-    },
-    buttonPressed: {
-    backgroundColor: '#f0f0f0',
+  button: {
+    backgroundColor: "white",
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
-    borderRadius: 15,
+    borderRadius: 30,
     width: 339,
     height: 50,
     justifyContent: "center",
     paddingHorizontal: 15,
-    },
+  },
+  buttonPressed: {
+    backgroundColor: "#f0f0f0",
+    boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
+    borderRadius: 30,
+    width: 339,
+    height: 50,
+    justifyContent: "center",
+    paddingHorizontal: 15,
+  },
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -76,7 +79,4 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
     color: "#007AFF", // Default link color
   },
-
-
- 
 });

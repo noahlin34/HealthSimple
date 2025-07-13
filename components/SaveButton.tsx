@@ -24,7 +24,7 @@ export default function SaveButton({ title, onPress }: Props) {
 const styles = StyleSheet.create({
   saveButton: {
     backgroundColor: "white",
-    borderRadius: 15,
+    borderRadius: 30,
     padding: 15,
     alignSelf: "center",
     width: 339,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   saveButtonPressed: {
     backgroundColor: "#f0f0f0",
-    borderRadius: 15,
+    borderRadius: 30,
     padding: 15,
     alignSelf: "center",
     width: 339,

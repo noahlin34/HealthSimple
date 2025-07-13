@@ -1,5 +1,6 @@
 import { DeleteButton } from "@/components/DetailButtons";
 import DetailCard from "@/components/DetailCard";
+import DetailTitle from "@/components/DetailTitle";
 import NotesCard from "@/components/NotesCard";
 import Styles from "@/components/Styles";
 import {
@@ -79,6 +80,7 @@ export default function TeamMemberDetails() {
 
   return (
     <View style={styles.container}>
+      <DetailTitle color={"orange"} icon={"user-md"} name={teamMember.name} />
       <DetailCard
         title="Details"
         objects={
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignContent: "center",
-    justifyContent: "center",
+    gap: 10,
+    justifyContent: "space-between",
   },
 });

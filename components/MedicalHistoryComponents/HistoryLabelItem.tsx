@@ -55,15 +55,16 @@ const styles = StyleSheet.create({
     padding: 15,
     color: "white",
     backgroundColor: "white",
-    borderRadius: 15,
+    borderRadius: 30,
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
   },
   containerPressed: {
     flexDirection: "row",
-    width: "100%",
     padding: 15,
+    justifyContent: "space-between",
+
     backgroundColor: "#f0f0f0",
-    borderRadius: 15,
+    borderRadius: 30,
     boxShadow: "0px 5px 3px rgba(0, 0, 0, 0.1)",
   },
   label: {

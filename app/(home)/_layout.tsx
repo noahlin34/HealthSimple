@@ -7,6 +7,9 @@ export default function Layout() {
   return (
     <Stack
       screenOptions={{
+        contentStyle: {
+          backgroundColor: "whitesmoke",
+        },
         headerLeft: () => (
           <Pressable
             onPress={() => router.back()}

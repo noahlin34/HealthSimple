@@ -1,9 +1,11 @@
-import { Inter_400Regular, Inter_700Bold, useFonts } from "@expo-google-fonts/inter";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import {
+  Inter_400Regular,
+  Inter_700Bold,
+  useFonts,
+} from "@expo-google-fonts/inter";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Styles from "../Styles";
-
 
 type Props = {
   id: number;
@@ -12,23 +14,31 @@ type Props = {
   onPress?: () => void;
 };
 
-export default function HistoryLabelItem({id, date, title, onPress}: Props) {
+export default function HistoryLabelItem({ id, date, title, onPress }: Props) {
   useFonts({
     Inter_400Regular,
-    Inter_700Bold,})
+    Inter_700Bold,
+  });
 
-    const dateObj = new Date(date);
-    const [isPressed, setIsPressed] = useState(false);
-
+  const dateObj = new Date(date);
+  const [isPressed, setIsPressed] = useState(false);
 
   return (
-    <Pressable style={{width: 339}} onPressIn={() => setIsPressed(true)} onPressOut={() => setIsPressed(false)} onPress={onPress}>
+    <Pressable
+      style={{ width: 339 }}
+      onPressIn={() => setIsPressed(true)}
+      onPressOut={() => setIsPressed(false)}
+      onPress={onPress}
+    >
       <View style={isPressed ? styles.containerPressed : styles.container}>
-        <FontAwesome5 name="history" size={50} color="purple" />
-        <View style={styles.verticalContainer}>
-            <Text style={Styles.labelBold}>{dateObj.toLocaleDateString('en-us', {day: 'numeric', month: 'long', year: 'numeric'})}</Text>
-            <Text style={Styles.label}>{title}</Text>
-        </View>
+        <Text style={Styles.label}>
+          {dateObj.toLocaleDateString("en-us", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </Text>
+        <Text style={Styles.label}>{title}</Text>
       </View>
     </Pressable>
   );
@@ -37,10 +47,10 @@ export default function HistoryLabelItem({id, date, title, onPress}: Props) {
 const styles = StyleSheet.create({
   verticalContainer: {
     flexDirection: "column",
-    paddingLeft: 20,
   },
   container: {
     flexDirection: "row",
+    justifyContent: "space-between",
     width: "100%",
     padding: 15,
     color: "white",
@@ -58,5 +68,5 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
-  }
+  },
 });

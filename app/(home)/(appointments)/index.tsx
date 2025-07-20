@@ -1,9 +1,10 @@
 import AddButton from "@/components/AddButton";
-import AppointmentsItem from "@/components/AppointmentsItem";
+import ListItem from "@/components/ListItem";
+import { truncate } from "@/components/Styles";
 import {
-    Appointment,
-    getAllAppointments,
-    initAppointmentsDB,
+  Appointment,
+  getAllAppointments,
+  initAppointmentsDB,
 } from "@/db/AppointmentsProvider";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -57,16 +58,18 @@ export default function Index() {
       <FlatList
         data={appointments}
         renderItem={({ item }: { item: Appointment }) => (
-          <AppointmentsItem
+          <ListItem
             onPress={() =>
               router.navigate({
                 pathname: "/(home)/(appointments)/appointmentDetailView",
                 params: { id: item.id },
               })
             }
-            label={item.title}
-            subheading={item.type}
-            date={item.date}
+            labelLeft={truncate(item.title) + " - " + truncate(item.type)}
+            labelRight={new Date(item.date).toLocaleString("en-US", {
+              month: "long",
+              day: "numeric",
+            })}
           />
         )}
         keyExtractor={(item: Appointment) => item.id.toString()}

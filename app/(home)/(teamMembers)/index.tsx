@@ -1,5 +1,5 @@
 import AddButton from "@/components/AddButton";
-import TeamItem from "@/components/TeamComponents/TeamItem";
+import ListItem from "@/components/ListItem";
 import { getAllTeamsMembers, initTeamsDB, TeamMember } from "@/db/TeamProvider";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -47,9 +47,9 @@ export default function Index() {
       <FlatList
         data={teamMembers}
         renderItem={({ item }: { item: TeamMember }) => (
-          <TeamItem
-            name={item.name}
-            role={item.role}
+          <ListItem
+            labelLeft={item.name}
+            labelRight={item.role}
             onPress={() =>
               router.navigate({
                 pathname: "/(home)/(teamMembers)/teamMemberDetails",

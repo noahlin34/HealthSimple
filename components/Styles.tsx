@@ -1,5 +1,12 @@
 import { Platform, StyleSheet } from "react-native";
 
+export function truncate(text: string): string {
+  if (text.length > 10) {
+    return text.substring(0, 10) + "...";
+  }
+  return text;
+}
+
 export default StyleSheet.create({
   Title: {
     fontSize: 40,

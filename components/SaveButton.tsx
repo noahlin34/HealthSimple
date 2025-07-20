@@ -1,5 +1,11 @@
 import React from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import Styles from "./Styles";
 
 type Props = {
@@ -9,15 +15,31 @@ type Props = {
 
 export default function SaveButton({ title, onPress }: Props) {
   const [isPressed, setIsPressed] = React.useState(false);
+  const scale = useSharedValue(1);
+  const animationConfig = {
+    duration: 150,
+    easing: Easing.bezier(0.4, 0, 0.2, 1),
+  };
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: withTiming(scale.value, animationConfig) }],
+    };
+  });
   return (
-    <Pressable
-      style={isPressed ? styles.saveButtonPressed : styles.saveButton}
-      onPressIn={() => setIsPressed(true)}
-      onPressOut={() => setIsPressed(false)}
-      onPress={onPress}
-    >
-      <Text style={Styles.label}>{title}</Text>
-    </Pressable>
+    <Animated.View style={[{}, animatedStyle]}>
+      <Pressable
+        style={isPressed ? styles.saveButtonPressed : styles.saveButton}
+        onPressIn={() => {
+          scale.value = 0.95;
+        }}
+        onPressOut={() => {
+          scale.value = 1;
+        }}
+        onPress={onPress}
+      >
+        <Text style={Styles.label}>{title}</Text>
+      </Pressable>
+    </Animated.View>
   );
 }
 

@@ -1,6 +1,12 @@
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import Styles from "./Styles";
 
 type Props = {
@@ -10,33 +16,49 @@ type Props = {
 
 export default function AddButton({ label, onPress }: Props) {
   const [isPressed, setIsPressed] = useState(false);
+  const scale = useSharedValue(1);
+  const animationConfig = {
+    duration: 150,
+    easing: Easing.bezier(0.4, 0, 0.2, 1),
+  };
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: withTiming(scale.value, animationConfig) }],
+    };
+  });
 
   return (
-    <Pressable
-      style={
-        isPressed
-          ? styles.addAppointmentButtonPressed
-          : styles.addAppointmentButton
-      }
-      onPress={onPress}
-      onPressIn={() => setIsPressed(true)}
-      onPressOut={() => setIsPressed(false)}
-    >
-      <View
-        style={{
-          gap: 10,
-          height: "100%",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
+    <Animated.View style={[{}, animatedStyle]}>
+      <Pressable
+        style={
+          isPressed
+            ? styles.addAppointmentButtonPressed
+            : styles.addAppointmentButton
+        }
+        onPress={onPress}
+        onPressIn={() => {
+          scale.value = 0.95;
+        }}
+        onPressOut={() => {
+          scale.value = 1;
         }}
       >
-        <FontAwesome5 name="plus" size={15} color="black" />
+        <View
+          style={{
+            gap: 10,
+            height: "100%",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <FontAwesome5 name="plus" size={15} color="black" />
 
-        <Text style={Styles.labelClickable}>{label}</Text>
-      </View>
-    </Pressable>
+          <Text style={Styles.labelClickable}>{label}</Text>
+        </View>
+      </Pressable>
+    </Animated.View>
   );
 }
 

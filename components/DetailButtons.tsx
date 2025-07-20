@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import Styles from "./Styles";
 
 type Props = {
@@ -61,9 +67,19 @@ export function DeleteButton({
   deleteMessage: string;
 }) {
   const [deleteIsPressed, setDeleteIsPressed] = useState(false);
+  const scale = useSharedValue(1);
+  const animationConfig = {
+    duration: 150,
+    easing: Easing.bezier(0.4, 0, 0.2, 1),
+  };
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: withTiming(scale.value, animationConfig) }],
+    };
+  });
 
   return (
-    <View style={styles.deleteContainer}>
+    <Animated.View style={[styles.deleteContainer, animatedStyle]}>
       <Pressable
         style={deleteIsPressed ? styles.buttonPressed : styles.button}
         onPress={() => {
@@ -72,12 +88,16 @@ export function DeleteButton({
             { text: "Delete", style: "destructive", onPress: onDelete },
           ]);
         }}
-        onPressIn={() => setDeleteIsPressed(true)}
-        onPressOut={() => setDeleteIsPressed(false)}
+        onPressIn={() => {
+          scale.value = 0.95;
+        }}
+        onPressOut={() => {
+          scale.value = 1;
+        }}
       >
         <Text style={Styles.labelDestructive}>{title}</Text>
       </Pressable>
-    </View>
+    </Animated.View>
   );
 }
 

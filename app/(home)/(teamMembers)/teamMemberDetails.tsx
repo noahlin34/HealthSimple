@@ -87,10 +87,10 @@ export default function TeamMemberDetails() {
           <>
             <Text style={Styles.label}>{teamMember.role}</Text>
             <Link href={("mailto:" + teamMember.email) as `mailto:${string}`}>
-              <Text style={Styles.labelBold}>{teamMember.phone}</Text>
+              <Text style={Styles.labelBold}>{teamMember.email}</Text>
             </Link>
             <Link href={("tel:" + teamMember.phone) as `tel:${string}`}>
-              <Text style={Styles.labelBold}>{teamMember.email}</Text>
+              <Text style={Styles.labelBold}>{teamMember.phone}</Text>
             </Link>
           </>
         }

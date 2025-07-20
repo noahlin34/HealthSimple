@@ -1,5 +1,5 @@
 import AddButton from "@/components/AddButton";
-import HistoryLabelItem from "@/components/MedicalHistoryComponents/HistoryLabelItem";
+import ListItem from "@/components/ListItem";
 import {
   HistoryItem,
   getAllHistoryItems,
@@ -58,10 +58,11 @@ export default function Index() {
         contentContainerStyle={{ gap: 10 }}
         data={historyItems}
         renderItem={({ item }: { item: HistoryItem }) => (
-          <HistoryLabelItem
-            id={item.id}
-            date={item.date}
-            title={item.title}
+          <ListItem
+            labelLeft={new Date(item.date).toLocaleString("en-US", {
+              dateStyle: "long",
+            })}
+            labelRight={item.title}
             onPress={() =>
               router.navigate({
                 pathname: "/(home)/(medicalHistory)/historyDetail",

@@ -1,5 +1,5 @@
 import AddButton from "@/components/AddButton";
-import NotesListItem from "@/components/MyNotes/NotesListItem";
+import ListItem from "@/components/ListItem";
 import { getAllNotes, initNotesDB, Note } from "@/db/NotesProvider";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -18,7 +18,7 @@ export default function Index() {
 
   const fetchNotes = async () => {
     try {
-      initNotesDB();
+      await initNotesDB();
       const items = await getAllNotes();
       setNotes(Array.isArray(items) ? items.sort(sortByDate) : []);
     } catch (error) {
@@ -33,9 +33,6 @@ export default function Index() {
     useCallback(() => {
       setLoading(true);
       fetchNotes();
-      if (refresh === "1") {
-        router.setParams({ refresh: undefined });
-      }
     }, []),
   );
 
@@ -65,10 +62,11 @@ export default function Index() {
           />
         }
         renderItem={({ item }: { item: Note }) => (
-          <NotesListItem
-            id={item.id}
-            content={item.content}
-            editDate={item.editDate}
+          <ListItem
+            labelRight={""}
+            labelLeft={new Date(item.editDate).toLocaleString("en-US", {
+              dateStyle: "long",
+            })}
             onPress={() =>
               router.navigate({
                 pathname: "/(home)/(notes)/notesDetail",

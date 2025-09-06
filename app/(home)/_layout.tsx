@@ -30,7 +30,7 @@ export default function Layout() {
     >
       <Stack.Screen
         name="index"
-        options={{ title: "Home", headerLeft: undefined }}
+        options={{ title: "My Info", headerLeft: undefined }}
       />
       <Stack.Screen
         name="(appointments)/index"

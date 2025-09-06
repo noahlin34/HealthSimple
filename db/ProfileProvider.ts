@@ -30,6 +30,17 @@ export async function getProfile(): Promise<Profile | null> {
   return result;
 }
 
+export async function getProfileName(): Promise<string | null> {
+  const result = await db.getFirstAsync<Profile>(
+    "SELECT name FROM profile WHERE id = 1",
+  );
+  if (!result) {
+    console.log("No profile found");
+    return null;
+  }
+  return result.name;
+}
+
 export async function updateProfile(
   name: string,
   dob: string,

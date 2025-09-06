@@ -20,6 +20,14 @@ export default StyleSheet.create({
         ? "LeagueSpartan-Regular"
         : "LeagueSpartan_400Regular",
   },
+  listLabel: {
+    fontSize: 20,
+    padding: 5,
+    fontFamily:
+      Platform.OS === "ios"
+        ? "LeagueSpartan-Regular"
+        : "LeagueSpartan_400Regular",
+  },
   label: {
     fontSize: 20,
     fontFamily:

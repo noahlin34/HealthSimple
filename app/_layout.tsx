@@ -13,12 +13,22 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="(home)"
+        name="(overview)"
         options={{
           headerShown: false,
           title: "",
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="home" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(home)"
+        options={{
+          headerShown: false,
+          title: "",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="list" size={20} color={color} />
           ),
         }}
       />

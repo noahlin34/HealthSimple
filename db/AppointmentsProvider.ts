@@ -24,6 +24,13 @@ export async function getAllAppointments(): Promise<Appointment[]> {
   return result;
 }
 
+export async function getUpComingAppointments(): Promise<Appointment[]> {
+  const result = await db.getAllAsync<Appointment>(
+    "SELECT * FROM appointments WHERE date >= date('now') ORDER BY date ASC LIMIT 5",
+  );
+  return result;
+}
+
 export async function addAppointment(
   title: string,
   type: string,

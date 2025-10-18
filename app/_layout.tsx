@@ -12,6 +12,7 @@ export default function Layout() {
         },
       }}
     >
+      <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
         name="(overview)"
         options={{

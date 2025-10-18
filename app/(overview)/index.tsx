@@ -10,6 +10,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Text } from "@react-navigation/elements";
 import { registerRootComponent } from "expo";
 import { Link, router, useFocusEffect } from "expo-router";
+import "expo-router/entry";
 import { useCallback, useState } from "react";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 
@@ -64,7 +65,11 @@ export default function Index() {
         ItemSeparatorComponent={() => {
           return (
             <View
-              style={{ marginVertical: 10, height: 1, backgroundColor: "gray" }}
+              style={{
+                marginVertical: 10,
+                height: 1,
+                backgroundColor: "lightgray",
+              }}
             />
           );
         }}
@@ -112,7 +117,11 @@ export default function Index() {
         ItemSeparatorComponent={() => {
           return (
             <View
-              style={{ marginVertical: 10, height: 1, backgroundColor: "gray" }}
+              style={{
+                marginVertical: 10,
+                height: 1,
+                backgroundColor: "lightgray",
+              }}
             />
           );
         }}

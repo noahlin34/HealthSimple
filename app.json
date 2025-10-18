@@ -25,9 +25,7 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    {
-      "main": "(overview)/index.tsx"
-    },
+      "main": "(overview)/index.tsx",
     "plugins": [
       "expo-router",
       [

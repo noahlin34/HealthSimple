@@ -1,9 +1,11 @@
 import { FontAwesome } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { Stack, router } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { Platform, Pressable } from "react-native";
 
 export default function Layout() {
+  const router = useRouter();
+
   return (
     <Stack
       screenOptions={{
@@ -15,6 +17,10 @@ export default function Layout() {
             onPress={() => router.back()}
             style={({ pressed }) => ({
               opacity: pressed ? 0.5 : 1,
+              alignItems: "center",
+              alignContent: "center",
+              justifyContent: "center",
+              paddingHorizontal: 10,
             })}
           >
             <FontAwesome5 name="arrow-left" size={20} color="dark-gray" />
@@ -48,10 +54,11 @@ export default function Layout() {
             <Pressable
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
+                justifyContent: "center",
+                alignItems: "center",
+                paddingHorizontal: 50,
               })}
-            >
-              <FontAwesome name="pencil" size={20} color="dark-gray" />
-            </Pressable>
+            ></Pressable>
           ),
         }}
       />
@@ -108,6 +115,7 @@ export default function Layout() {
               onPress={() => router.back()}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
+                paddingHorizontal: 10,
               })}
             >
               <FontAwesome name="close" size={20} color="black" />

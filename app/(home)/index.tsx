@@ -12,32 +12,32 @@ export default function Index() {
         symbolColor="skyblue"
         label="Medications"
         onPress={() => {
-          router.navigate("/(home)/(medications)");
+          router.push("/(home)/(medications)");
         }}
       />
       <MenuItem
         symbolName={"calendar"}
         symbolColor="limegreen"
         label="Appointments"
-        onPress={() => router.navigate({ pathname: "/(home)/(appointments)" })}
+        onPress={() => router.push({ pathname: "/(home)/(appointments)" })}
       />
       <MenuItem
         symbolName={"user-alt"}
         symbolColor="orange"
         label="Health Care Team"
-        onPress={() => router.navigate("/(home)/(teamMembers)")}
+        onPress={() => router.push("/(home)/(teamMembers)")}
       />
       <MenuItem
         symbolName={"clipboard-list"}
         symbolColor="purple"
         label="Medical History"
-        onPress={() => router.navigate("/(home)/(medicalHistory)")}
+        onPress={() => router.push("/(home)/(medicalHistory)")}
       />
       <MenuItem
         symbolName={"book-medical"}
         symbolColor="red"
         label="Notes"
-        onPress={() => router.navigate("/(home)/(notes)")}
+        onPress={() => router.push("/(home)/(notes)")}
       />
     </View>
   );

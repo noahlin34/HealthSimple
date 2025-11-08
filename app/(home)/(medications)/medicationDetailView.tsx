@@ -52,6 +52,10 @@ export default function MedicationDetailView() {
         <Pressable
           style={({ pressed }) => ({
             opacity: pressed ? 0.5 : 1,
+            alignItems: "center",
+            alignContent: "center",
+            justifyContent: "center",
+            paddingHorizontal: 10,
           })}
           onPress={() =>
             router.push({ pathname: "/editMedication", params: { id: id } })
